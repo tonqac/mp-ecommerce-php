@@ -1,4 +1,7 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set("display_errors", 1);
+
 	$URL_SITE = "https://tonqac-mp-commerce-php.herokuapp.com/";
 
 	// SDK de Mercado Pago
@@ -56,11 +59,11 @@
 
 	// Back URLs
 	$preference->back_urls = array(
-	    "success" => $URL_SITE."success.php",
-	    "failure" => $URL_SITE."failure.php",
-	    "pending" => $URL_SITE."pending.php"
+		"success" => $URL_SITE."success.php",
+		"failure" => $URL_SITE."failure.php",
+		"pending" => $URL_SITE."pending.php"
 	);
-	
+
 	$preference->notification_url = $URL_SITE."notification_ipn.php";
 	$preference->external_reference = "tonqac@yahoo.com";
 	$preference->save();
