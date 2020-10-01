@@ -1,5 +1,4 @@
 <?php
-	error_reporting(E_ALL);
 	$URL_SITE = "https://tonqac-mp-commerce-php.herokuapp.com/";
 
 	// SDK de Mercado Pago
@@ -61,10 +60,11 @@
 	    "failure" => $URL_SITE."failure.php",
 	    "pending" => $URL_SITE."pending.php"
 	);
-
+	
+	$preference->notification_url = $URL_SITE."notification_ipn.php";
 	$preference->external_reference = "tonqac@yahoo.com";
 	$preference->save();
-	// echo "<pre>".print_r($preference,true)."</pre>";
+	//echo "<pre>".print_r($preference,true)."</pre>";
 ?>
 
 <form action="/procesar-pago" method="POST">
