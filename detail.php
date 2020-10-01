@@ -132,7 +132,7 @@
                                     </div>
 
                                     <?php
-                                        require __DIR__ .  "/mp.php";
+                                        require "mp.php";
                                     ?>
                                 </div>
                             </div>

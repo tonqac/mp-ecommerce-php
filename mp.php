@@ -5,7 +5,7 @@
 	$URL_SITE = "https://tonqac-mp-commerce-php.herokuapp.com/";
 
 	// SDK de Mercado Pago
-	require __DIR__ .  '/vendor/autoload.php';
+	require 'vendor/autoload.php';
 
 	// Agrego credenciales del comercio
 	MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
