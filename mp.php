@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ALL);
 	$URL_SITE = "https://tonqac-mp-commerce-php.herokuapp.com/";
 
 	// SDK de Mercado Pago
