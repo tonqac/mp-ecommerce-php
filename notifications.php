@@ -29,7 +29,7 @@
         MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
         // Obtengo información del pago
-        $payment = MercadoPago\Payment::find_by_id($_POST["id"]);
+        $payment = MercadoPago\Payment::find_by_id($_POST["data_id"]);
         $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
 
         $txt = "\n GET NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($merchant_order,true);
