@@ -65,7 +65,7 @@
 	);
 
 	$preference->auto_return = "approved";
-	$preference->notification_url = $URL_SITE."notification_ipn.php";
+	$preference->notification_url = $URL_SITE."notifications.php";
 	$preference->external_reference = "tonqac@yahoo.com";
 	$preference->save();
 ?>
