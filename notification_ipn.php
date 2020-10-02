@@ -1,15 +1,9 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set("display_errors", 1);
+    $txt = "\n INIT NOTIFICATION POST \n".date("Y-m-d H:i:s"). "\n". print_r($_POST,true)."
+            \n INIT NOTIFICATION GET \n".date("Y-m-d H:i:s"). "\n". print_r($_GET,true)."
+            \n INIT NOTIFICATION REQUEST \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
 
-    $txt = "\n INIT NOTIFICATION POST \n".date("Y-m-d H:i:s"). "\n". print_r($_POST,true);
-    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
-
-    $txt = "\n INIT NOTIFICATION GET \n".date("Y-m-d H:i:s"). "\n". print_r($_GET,true);
-    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
-
-    $txt = "\n INIT NOTIFICATION REQUEST \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
-    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
+    //file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
     // SDK de Mercado Pago
     require 'vendor/autoload.php';
@@ -18,7 +12,7 @@
 
     $merchant_order = null;
 
-    switch($_POST["type"]) {
+    switch($_GET["type"]) {
         case "payment":
             $payment = MercadoPago\Payment::find_by_id($_GET["id"]);
             $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
@@ -28,10 +22,13 @@
             break;
     }
 
-    $txt = "\n GET NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($merchant_order,true);
-    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
+    $txt.= "\n GET NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($merchant_order,true);
+    file_put_contents('results.txt', $txt);
 
     $json = json_encode((array) $merchant_order, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
     file_put_contents('results.json', $json);
+
+    header('Content-Type: application/json');
+    echo json_encode(['HTTP/1.1 200 OK'], 200);
 ?>
