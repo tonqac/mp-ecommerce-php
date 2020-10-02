@@ -1,5 +1,17 @@
 <?php
+    $txt = "";
+    foreach($_POST as $n=>$v){
+        $txt.= "$n: ".print_r($v,true);
+    }
     $txt = "\n INIT NOTIFICATION POST \n".date("Y-m-d H:i:s"). "\n". json_encode($_POST);
+    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
+
+    $txt = "";
+    foreach($_POST as $n=>$v){
+        $txt.= "$n: ".print_r($v,true);
+    }
+
+    $txt = "\n FOREACH POST \n".date("Y-m-d H:i:s"). "\n". $txt;
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
     $txt = "\n INIT NOTIFICATION GET \n".date("Y-m-d H:i:s"). "\n". json_encode($_GET);
@@ -9,14 +21,15 @@
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
     if($_POST["type"]=="payment"){
-        
+
         // SDK de Mercado Pago
         require 'vendor/autoload.php';
 
         MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
+        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
         // Obtengo información del pago
-        $payment = MercadoPago\Payment::find_by_id($_GET["data_id"]);
+        $payment = MercadoPago\Payment::find_by_id($_POST["id"]);
         $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
 
         $txt = "\n GET NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($merchant_order,true);
