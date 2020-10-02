@@ -3,7 +3,15 @@
     ini_set("display_errors", 1);
 
     $txt = "\n INIT NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
-    file_put_contents('results.txt', $txt);
+    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
+
+    if (!isset($_GET["id"], $_GET["topic"]) || !ctype_digit($_GET["id"])) {
+        http_response_code(400);
+        return;
+    }
+
+    $txt = "\n SECOND NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
+    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
     // SDK de Mercado Pago
     require 'vendor/autoload.php';
@@ -12,7 +20,7 @@
 
     $merchant_order = null;
 
-    switch($_GET["topic"]) {
+    switch($_POST["type"]) {
         case "payment":
             $payment = MercadoPago\Payment::find_by_id($_GET["id"]);
             $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
