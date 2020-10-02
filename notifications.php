@@ -1,7 +1,4 @@
 <?php
-    header('Content-Type: application/json');
-    echo json_encode(['HTTP/1.1 200 OK'], 200);
-    
     $txt = "\n INIT NOTIFICATION POST \n".date("Y-m-d H:i:s"). "\n". print_r($_POST,true);
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
@@ -26,4 +23,7 @@
     $json = json_encode((array) $merchant_order, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
     file_put_contents('results.json', $json);
+
+    header('Content-Type: application/json');
+    echo json_encode(['HTTP/1.1 200 OK'], 200);
 ?>
