@@ -20,7 +20,7 @@
     $txt = "\n INIT NOTIFICATION REQUEST \n".date("Y-m-d H:i:s"). "\n". json_encode($_REQUEST);
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
-    if($_POST["type"]=="payment"){
+    if($_GET["type"]=="payment"){
 
         // SDK de Mercado Pago
         require 'vendor/autoload.php';
@@ -29,7 +29,7 @@
         MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
         // Obtengo información del pago
-        $payment = MercadoPago\Payment::find_by_id($_POST["data_id"]);
+        $payment = MercadoPago\Payment::find_by_id($_GET["data_id"]);
         $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
 
         $txt = "\n GET NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($merchant_order,true);
