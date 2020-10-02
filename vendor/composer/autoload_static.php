@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitedcb44907262aafc1ed2d8608770806f
+class ComposerStaticInitda68f1d270b87c06a761cb8e14ef3811
 {
     public static $prefixLengthsPsr4 = array (
         'M' => 
@@ -13,6 +13,8 @@ class ComposerStaticInitedcb44907262aafc1ed2d8608770806f
         ),
         'D' => 
         array (
+            'Doctrine\\Persistence\\' => 21,
+            'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Collections\\' => 28,
@@ -30,6 +32,14 @@ class ComposerStaticInitedcb44907262aafc1ed2d8608770806f
             2 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago/Generic',
             3 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago/Entities',
             4 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago/Entities/Shared',
+        ),
+        'Doctrine\\Persistence\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Persistence',
+        ),
+        'Doctrine\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
@@ -63,8 +73,8 @@ class ComposerStaticInitedcb44907262aafc1ed2d8608770806f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitedcb44907262aafc1ed2d8608770806f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitedcb44907262aafc1ed2d8608770806f::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitda68f1d270b87c06a761cb8e14ef3811::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitda68f1d270b87c06a761cb8e14ef3811::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
