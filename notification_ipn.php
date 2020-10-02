@@ -2,15 +2,13 @@
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 
-    $txt = "\n INIT NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
+    $txt = "\n INIT NOTIFICATION POST \n".date("Y-m-d H:i:s"). "\n". print_r($_POST,true);
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
-    if (!isset($_GET["id"], $_GET["topic"]) || !ctype_digit($_GET["id"])) {
-        http_response_code(400);
-        return;
-    }
+    $txt = "\n INIT NOTIFICATION GET \n".date("Y-m-d H:i:s"). "\n". print_r($_GET,true);
+    file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
-    $txt = "\n SECOND NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
+    $txt = "\n INIT NOTIFICATION REQUEST \n".date("Y-m-d H:i:s"). "\n". print_r($_REQUEST,true);
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
 
     // SDK de Mercado Pago
