@@ -13,17 +13,9 @@
 
     MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
-    $merchant_order = null;
-
-    switch($_GET["type"]) {
-        case "payment":
-            $payment = MercadoPago\Payment::find_by_id($_GET["id"]);
-            $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
-            break;
-        case "merchant_order":
-            $merchant_order = MercadoPago\MerchantOrder::find_by_id($_GET["id"]);
-            break;
-    }
+    // Obtengo información del pago
+    $payment = MercadoPago\Payment::find_by_id($_GET["data_id"]);
+    $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
 
     $txt = "\n GET NOTIFICATION \n".date("Y-m-d H:i:s"). "\n". print_r($merchant_order,true);
     file_put_contents('results.txt', $txt, FILE_APPEND | LOCK_EX);
