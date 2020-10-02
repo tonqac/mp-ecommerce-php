@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+f<!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=1024">
@@ -87,13 +87,13 @@
                             </div>
                         </div>
                         <div class="as-accessories-results  as-search-desktop">
-                            <h1>El pago está pendiente</h1>
+                            <h1>El pago está Aprobado</h1>
 
-                            <pre>
+                            <p>
                                 <?php
-                                    print_r($_REQUEST);
+                                    foreach($_REQUEST as $n=>$v) echo "$n: $v <br>";
                                 ?>
-                            </pre>
+                            </p>
                         </div>
                     </div>
                 </div>

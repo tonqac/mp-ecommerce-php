@@ -132,7 +132,7 @@
                                     </div>
 
                                     <?php
-                                        require $_SERVER["DOCUMENT_ROOT"]."/mp.php";
+                                        require "mp.php";
                                     ?>
                                 </div>
                             </div>
