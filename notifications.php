@@ -1,4 +1,5 @@
 <?php
+    /*
     $txt = "";
     foreach($_POST as $n=>$v){
         $txt.= "$n: ".print_r($v,true);
@@ -39,6 +40,13 @@
 
         file_put_contents('results.json', $json);
     }
+    */
+
+    $MP_id_payment = $_GET["id"];
+    // $MP_order_info = null;
+
+    $postdata = file_get_contents("php://input");
+    file_put_contents('results/'.time().'.txt' , $postdata);
 
     header('Content-Type: application/json');
     echo json_encode(['HTTP/1.1 200 OK'], 200);
